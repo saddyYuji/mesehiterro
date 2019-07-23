@@ -1,4 +1,6 @@
 class PostImagesController < ApplicationController
+	layout "application"
+
 	def new #画像投稿画面を表示する
 		@post_image = PostImage.new
 	end
