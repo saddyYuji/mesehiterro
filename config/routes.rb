@@ -24,10 +24,18 @@ Rails.application.routes.draw do
 ## ログイン成功後、rootへ飛ぶので、任意の画面に設定
 	root 'post_images#index'
 
-	resources :post_images, only: [:new, :create, :index, :show]
+	resources :post_images, only: [:new, :create, :index, :show] do
+		resource :post_comments, only: [:create, :destroy]
+		resource :favorites, only: [:create, :destroy]
+	end
+
 	# 中身
 		# get '/post_images' => 'post_images#index', as: 'post_images'
 		# post '/post_images' => 'post_images#create' #No name
 		# get '/post_images/new' => 'post_images#new', as: 'new_post_image'
 		# get '/post_images/:id' => 'post_images#show', as: 'post_image'
+			# post '/post_images/:post_image_id/post_comments' => 'post_comments#create'
+			# delete '/post_images/:post_image_id/post_comments' => 'post_comments#destroy', as: 'post_image_post_comments'
+
+
 end
